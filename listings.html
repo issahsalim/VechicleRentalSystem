@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Listings</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body> 
+    <header>
+        <h1>Vehicle Listings</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="listings.html">Vehicles</a>
+            <a href="admin-login.html">Admin</a>
+        </nav>
+    </header> 
+    <main>  
+        <div class="vehicle-container">
+            <div class="vechileControl">
+                
+            </div>
+        </div>
+    </main>
+    <div class="salim"></div>
+    <footer>
+        <p>&copy; 2024 Vehicle Rental System</p>
+    </footer>
+    <script>
+         // Vehicle Arrays
+        const cars = [
+                {
+                    image: 'images/1.jpg',
+                    name: 'Sedan',
+                    price: '$50/day'
+                },
+                {
+                    image: 'images/2.jpg',
+                    name: 'SUV',
+                    price: '$70/day'
+                },
+                {
+                    image: 'images/3.jpg',
+                    name: 'Coupe',
+                    price: '$60/day'
+                },
+                {
+                    image: 'images/4.jpg',
+                    name: 'Truck',
+                    price: '$80/day'
+                },
+                {
+                    image: 'images/5.jpg',
+                    name: 'Honda',
+                    price: '$70/day'
+                },
+                {
+                    image: 'images/6.jpg',
+                    name: 'Benz',
+                    price: '$65/day'
+                },{
+                image: 'images/5.jpg',
+                name: 'CRV',
+                price: '$90/day'
+            },
+            {
+                image: 'images/5.jpg',  
+                name: 'OPEL', 
+                price: '$90/day'
+            },
+            ];
+        
+            listVehicle = ''; 
+            cars.forEach(car => {
+                listVehicle += `  
+        <div class="vehicle-card">
+            <img src="${car.image}" class="car-img" alt="${car.name}">  
+            <div class="car-details">
+                <h3>${car.name}</h3> 
+                <p>${car.price}</p> 
+                <button onclick="selectVehicle('${car.name}', ${car.price.substring(1, car.price.indexOf('/'))})" class="btn btn-primary">Book Now</button>
+            </div>
+        </div>
+    `;
+            });
+
+            // Rendering on page
+         document.querySelector('.vechileControl').innerHTML=listVehicle; 
+
+            function selectVehicle(name, rate) {
+                const selectedVehicle = {
+                    vehicle: name,
+                    rate: rate
+                };
+                localStorage.setItem('selectedVehicle', JSON.stringify(selectedVehicle));
+                window.location.href = 'booking.html';
+            }
+        
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* preloader */
+
+                .preloader {
+                    position: fixed;
+                    top: 0;
+                    background: black;
+                    width: 100%;
+                    height: 100vh;
+                    transition: opacity 10s visibility 10s;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+        
+                           .preloader_Remover {
+                               opacity: 0;
+                               visibility: hidden;
+                               transition: opacity 0.7s, visibility 0.7s;
+                           }
+        
+                .preloaderBehaviour {
+                    text-align: center;
+                    color: white;
+                }
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #555;
+}
+
+nav a:hover {
+    background-color: #161616;
+    transition: background-color 0.9s;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    width: 100%;
+    bottom: 0; 
+ }
+
+.intro {
+    margin-top: 50px;
+}
+
+.vehicle-container {
+    margin-top:10px;
+ 
+ }
+.vechileControl{  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 5px;
+     
+}
+
+.vehicle-card {
+    background-color: #fff;
+    border: 1px solid #ddd; 
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    text-align: center; 
+    box-shadow: 5px 5px  rgb(189, 187, 187);  
+    z-index: 2;
+ } 
+
+.vehicle-card img {
+    max-width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.vehicle-card h3 {
+    margin: 10px 0;
+}
+
+
+  
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    width: 300px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input {
+    width: calc(100% - 20px);
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+
+/* booking page forms */
+
+main {
+    padding: 20px;
+    text-align: center; 
+ }
+
+.form-controls{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    box-shadow: 5px 5px 5px 5px rgb(173, 172, 172);
+    padding:5rem 7rem; 
+     
+}
+
+.formImg{
+    width:30rem; 
+    height:47rem;
+    border-radius: 40px;
+    animation: renderImg 5s 2s infinite  ;
+
+}
+@keyframes renderImg {
+    0%{
+        background-image: url('images/1.jpg');  
+        background-size: cover;
+        
+    } 
+    25%{
+            background-image: url('images/2.jpg');
+            background-size: cover;
+            
+    }
+    50%{
+            background-image: url('images/3.jpg');
+            background-size: cover;
+             
+    }
+
+    75%{
+            background-image: url('images/4.jpg'); 
+            background-size: cover;
+             
+    }
+    100%{
+            background-image: url('images/5.jpg'); 
+            background-size: cover;
+             
+    }
+    
+} 
+ #booking-form{
+     box-shadow: 1px 1px 1px 2px rgb(204, 201, 201); 
+     width: 400px; 
+ }
+
+ #booking-form input{
+  border: none; 
+  background-color: #bbbbbb;
+  padding:10px 20px;
+  outline: 0;  
+  background-color: rgb(186, 196, 243);
+ }
+
+@media(max-width:768px){
+    .vechileControl{
+         transform: translate(50px, -50px);
+         margin-top: 40px; 
+        
+    } 
+
+
+#booking-form {
+    box-shadow: 1px 1px 1px 2px rgb(204, 201, 201);
+    width: auto;
+}
+
+.formImg {
+    display:none; 
+
+}
+}
+
+
+
+

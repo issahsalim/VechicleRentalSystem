@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="listings.html">Vehicles</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Payment Records</h2>
+        <table id="records-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Vehicle</th>
+                    <th>Rental Days</th>
+                    <th>Amount</th>
+                    <th>Card Number</th>
+                    <th>Expiry Date</th>
+                    <th>CVV</th>
+                    <th>Date</th>
+                    <th>Action</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Records will be populated here by JavaScript -->
+            </tbody>
+        </table>
+    </main> 
+    <footer style="position: fixed; bottom: 0;">
+        <p>&copy; 2024 Vehicle Rental System</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const adminLoggedIn = localStorage.getItem('adminLoggedIn');
+            if (adminLoggedIn !== 'true') {
+                window.location.href = 'admin-login.html';
+                return;
+            }
+
+            // RETRIEVING PAYMENT RECORDS FORM LOCAL STORAGE
+            const paymentRecords = JSON.parse(localStorage.getItem('paymentRecords')) || [];
+            const recordsTableBody = document.querySelector('#records-table tbody');
+
+            paymentRecords.forEach((record, index) => {
+                // creating table row
+                const row = document.createElement('tr');
+
+                const nameCell = document.createElement('td');
+                nameCell.textContent = record.name;
+                // adding name to the tableCreted
+                row.appendChild(nameCell);
+
+                const vehicleCell = document.createElement('td');
+                vehicleCell.textContent = record.vehicle;
+                // adding vechicleName to the table
+                row.appendChild(vehicleCell);
+
+                const rentalDaysCell = document.createElement('td');
+                rentalDaysCell.textContent = record.rentalDays;
+                // days of rental to the table
+                row.appendChild(rentalDaysCell);
+
+                const amountCell = document.createElement('td');
+                amountCell.textContent = `$${record.amount}`;
+                // adding amount   to table
+                row.appendChild(amountCell);
+
+                const cardNumberCell = document.createElement('td');
+                cardNumberCell.textContent = record.cardNumber;
+                // 
+                row.appendChild(cardNumberCell);
+
+                const expiryDateCell = document.createElement('td');
+                expiryDateCell.textContent = record.expiryDate;
+                row.appendChild(expiryDateCell);
+
+                const cvvCell = document.createElement('td');
+                cvvCell.textContent = record.cvv;
+                row.appendChild(cvvCell);
+
+                const dateCell = document.createElement('td');
+                dateCell.textContent = new Date(record.date).toLocaleString();
+                row.appendChild(dateCell);
+
+                const actionCell = document.createElement('td');
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deleteRecord(index);
+                actionCell.appendChild(deleteButton);
+                row.appendChild(actionCell);
+
+                recordsTableBody.appendChild(row);
+            });
+
+             function deleteRecord(index) {
+
+                   Swal.fire({
+                     title: "Are you sure?",
+                     text: "You won't be able to revert this!",
+                     icon: "warning",
+                     showCancelButton: true,
+                     confirmButtonColor: "#3085d6",
+                     cancelButtonColor: "#d33",
+                     confirmButtonText: "Yes, delete it!"
+                 }).then((result) => {
+                     if (result.isConfirmed) {
+                         Swal.fire({
+                             title: "Deleted!",
+                             text: "Your file has been deleted.",
+                             icon: "success"
+                         });
+                          let paymentRecords = JSON.parse(localStorage.getItem('paymentRecords')) || [];
+                         paymentRecords.splice(index, 1);
+                         localStorage.setItem('paymentRecords', JSON.stringify(paymentRecords));
+                         window.location.reload(); 
+                     }else{
+                        Swal.fire({
+                            icon:"error",
+                            title:"Cancelled",
+                            text:"you cancelled your action" 
+                        })
+                     }
+                     
+                 });
+            }
+        }); 
+            // alert before deleting from record list
+           
+
+      
+    </script>
+</body>
+
+</html>
